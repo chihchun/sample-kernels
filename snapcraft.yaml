@@ -1,4 +1,4 @@
-name: kernelv49
+name: samplekernel
 version: 4.9.1
 summary: A generic amd64 kernel built from source
 description: This is a generic kernel for amd64 / kvm built using x86_64_defconfig plus the minimal snappy config changes
@@ -8,8 +8,6 @@ parts:
   kernel:
     plugin: kernel
     source: .
-#    source-branch: stable-4.9.y
-#    source-type: git
     kdefconfig: [x86_64_defconfig, snappy/generic.config, snappy/security.config, snappy/systemd.config, snappy/snappy.config, snappy/containers.config]
     kconfigs:
       - CONFIG_LOCALVERSION="-stable-4.9.y"
