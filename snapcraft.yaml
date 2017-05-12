@@ -1,0 +1,19 @@
+name: samplekernel
+version: 4.1.15
+summary: A generic amd64 kernel built from source
+description: This is a generic kernel for amd64 / kvm built using x86_64_defconfig plus the minimal snappy config changes
+type: kernel
+
+parts:
+  kernel:
+    plugin: kernel
+    source: .
+    kdefconfig: [x86_64_defconfig, snappy/generic.config, snappy/security.config, snappy/systemd.config, snappy/snappy.config, snappy/containers.config]
+    kernel-initrd-modules:
+      - squashfs
+    kernel-initrd-firmware:
+      - lib/firmware/e100/d101m_ucode.bin
+      - lib/firmware/e100/d101s_ucode.bin
+      - lib/firmware/e100/d102e_ucode.bin
+    kernel-image-target: bzImage
+    build-packages: [bc, lzop, cpio, kmod]
